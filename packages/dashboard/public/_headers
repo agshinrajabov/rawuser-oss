@@ -1,0 +1,31 @@
+# Response headers for the dashboard, in the form Cloudflare Pages reads.
+# Next copies public/ into out/, so this file ships with every build.
+# No Content-Security-Policy yet; that needs its own pass with the login,
+# apply and first-run flows tested.
+
+# "! Access-Control-Allow-Origin" detaches the wildcard CORS header Pages adds
+# to static files by default: nothing reads these pages cross-origin.
+/*
+  Strict-Transport-Security: max-age=15552000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: accelerometer=(), browsing-topics=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), hid=(), magnetometer=(), microphone=(), midi=(), payment=(), serial=(), usb=(), xr-spatial-tracking=()
+  ! Access-Control-Allow-Origin
+
+# The free audit's public pages: the sign-up and the report open from links
+# whose token rides in the fragment. Never indexed, and no referrer leaves
+# them (the last Referrer-Policy value wins).
+/audit/*
+  Referrer-Policy: no-referrer
+  X-Robots-Tag: noindex, nofollow
+
+# Content-hashed build output never changes under the same name.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# A pages.dev preview hostname is a deploy check only. To keep yours out of
+# search results, add a block for it:
+#
+#   https://<your-project>.pages.dev/*
+#     X-Robots-Tag: noindex

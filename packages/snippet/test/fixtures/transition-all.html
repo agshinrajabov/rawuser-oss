@@ -1,0 +1,79 @@
+<!doctype html>
+<!--
+  A page whose parts carry the site's own `transition: all 0.3s ease`, with
+  the tag at the foot of the page. A script ahead of the tag reads the parts'
+  style, as a site's own scripts do, so the parts have their style before the
+  hide rule lands. Our own markup. The same page is served on the lab, where
+  the paint is measured in a real browser.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zoo: transition all</title>
+    <style>
+      :root { --bg: #0f1113; --fg: #f2f2f0; --fg3: #8a8f94; --accent: #7cf0c0; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; }
+      main { max-width: 960px; margin: 0 auto; padding: 96px 20px; }
+      h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 24px; font-weight: 700; transition: all 0.3s ease; }
+      p.sub { font-size: 18px; line-height: 1.55; color: var(--fg3); max-width: 60ch; margin: 0 0 32px; opacity: 0.2; transform: translateY(12px); transition: opacity 0.8s ease, transform 0.8s ease; }
+      p.sub.in { opacity: 1; transform: none; }
+      a.btn-light { display: inline-block; background: var(--accent); color: #0f1113; padding: 14px 22px; border-radius: 999px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; }
+      a.btn-light:hover { background: #fff; transform: translateY(-2px); }
+      a.btn-light .arrow { display: inline-block; margin-left: 6px; transition: all 0.3s ease 0.2s; }
+      nav { margin-top: 56px; font-size: 14px; } nav a { color: var(--fg3); margin-right: 14px; }
+    </style>
+  </head>
+  <body>
+    <script>
+      window.__zoo = { t0: performance.now(), original_ms: {}, arrow_early_ms: 0, shown_at: {}, entrance: [] };
+      (function () {
+        var own = {};
+        var sel = { headline: "h1", body: "p.sub", label: "a.btn-light" };
+        var last = performance.now();
+        function words(el) { return el.textContent.replace(/\s+/g, " ").trim(); }
+        function tick() {
+          var now = performance.now(), dt = now - last;
+          last = now;
+          for (var k in sel) {
+            var el = document.querySelector(sel[k]);
+            if (!el) continue;
+            if (!(k in own)) own[k] = words(el);
+            var seen = getComputedStyle(el).visibility === "visible";
+            if (seen && words(el) === own[k]) window.__zoo.original_ms[k] = Math.round((window.__zoo.original_ms[k] || 0) + dt);
+            if (seen && words(el) !== own[k] && !(k in window.__zoo.shown_at)) window.__zoo.shown_at[k] = Math.round(now);
+          }
+          var arrow = document.querySelector(".arrow"), btn = document.querySelector("a.btn-light");
+          if (arrow && btn && getComputedStyle(arrow).visibility === "visible" && words(btn) === own.label) window.__zoo.arrow_early_ms = Math.round(window.__zoo.arrow_early_ms + dt);
+          requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      })();
+    </script>
+    <main>
+      <h1 data-rawuser="hero.headline">Your visitors already arrive through AI tools.</h1>
+      <p class="sub" data-rawuser="hero.body">Rawuser reads why each visitor came and rewrites the headline, the text and the button for that reason, in your own design.</p>
+      <a class="btn-light" href="#pilot" data-rawuser="hero.cta.label">Start a pilot <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <nav><a href="/zoo/">zoo</a> <a href="/zoo/typewriter/">typewriter</a> <a href="/zoo/lines-fixed/">lines-fixed</a> <a href="/zoo/transition-all/">transition-all</a></nav>
+    </main>
+    <script>
+      // A site's own script ahead of our tag: it reads the parts' style, so they have one.
+      ["h1", "p.sub", "a.btn-light", ".arrow"].forEach(function (s) {
+        void getComputedStyle(document.querySelector(s)).visibility;
+      });
+      // The page's own entrance, by a transition, started by the page itself.
+      (function () {
+        var p = document.querySelector("p.sub");
+        ["transitionrun", "transitionend", "transitioncancel"].forEach(function (type) {
+          p.addEventListener(type, function (e) {
+            if (e.propertyName === "opacity") window.__zoo.entrance.push(type + "@" + Math.round(performance.now()));
+          });
+        });
+        document.addEventListener("DOMContentLoaded", function () { p.classList.add("in"); });
+      })();
+    </script>
+    <script src="https://edge.example.com/s/template-lab.js"></script>
+  </body>
+</html>

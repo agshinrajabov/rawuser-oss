@@ -1,0 +1,818 @@
+{
+  "_from": "bundleDirectFields and choiceAllowed at 671a98db, before the memory on a marked site became the install's decision. Recorded once by running that tree.",
+  "rows": [
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {
+        "rm": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {
+        "rm": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": null,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {
+        "dp": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {
+        "dp": 1,
+        "rm": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {
+        "rm": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {
+        "dp": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {
+        "rm": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {
+        "rm": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 0,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 0,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": null,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {
+        "rm": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {
+        "rm": 1
+      },
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": 0,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "pilot",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": true
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 0
+      },
+      "fields": {},
+      "choiceAllowed": false
+    },
+    {
+      "row": {
+        "special_category": 1,
+        "sensitive": 1,
+        "remember_off": 1,
+        "plan": "audit",
+        "page_one_off": 1
+      },
+      "fields": {},
+      "choiceAllowed": false
+    }
+  ]
+}

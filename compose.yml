@@ -1,0 +1,22 @@
+# Rawuser on your own server.
+#
+#   cp packages/server/.env.example .env     and fill it in
+#   docker compose up -d
+#   docker compose run --rm rawuser pnpm server:user     your sign-in
+#
+# Put a reverse proxy with TLS in front, one host for each of the three
+# ports, and set the three *_ORIGIN values to those hosts.
+services:
+  rawuser:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8787:8787" # the edge: your site's visitors' browsers call this
+      - "8788:8788" # the API: the dashboard calls this
+      - "8789:8789" # the dashboard
+    volumes:
+      - rawuser-data:/data
+
+volumes:
+  rawuser-data:

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "organizeImports": { "enabled": true },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "trailingCommas": "all",
+      "semicolons": "always"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "error"
+      }
+    }
+  },
+  "files": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.wrangler/**",
+      "**/.bundle/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/pnpm-lock.yaml",
+      "migrations/**",
+      "docs/research/speed-test-scripts/**",
+      "packages/edge/src/snippet-asset.ts",
+      "packages/edge/src/picker-asset.ts",
+      "packages/edge/src/rich-asset.ts",
+      "packages/edge/src/boot-asset.ts",
+      "packages/edge/src/core-assets.ts"
+    ]
+  }
+}

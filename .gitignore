@@ -1,0 +1,19 @@
+node_modules/
+.dev.vars
+.wrangler/
+# An install on your own server keeps its SQLite files here.
+/data/
+.bundle/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+# Next.js build artifacts
+.next/
+out/
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+__pycache__/

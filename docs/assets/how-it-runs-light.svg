@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 850" width="1600" height="850" role="img" aria-label="What runs where: a generation worker writes versions ahead of time with your model and stores them; an edge worker answers each visit from storage. Both run in your own Cloudflare account or on your own server.">
+<title>What runs where: a generation worker writes versions ahead of time with your model and stores them; an edge worker answers each visit from storage. Both run in your own Cloudflare account or on your own server.</title>
+<rect width="1600" height="850" rx="20" fill="#f5f5f5"/>
+<rect x="0.5" y="0.5" width="1599" height="849" rx="20" fill="none" stroke="#e5e5e5"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#666666"/></marker></defs>
+<text x="96" y="64" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#666666" text-anchor="start">02</text>
+<text x="140" y="64" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#666666" text-anchor="start">what runs where</text>
+<rect x="446" y="104" width="790" height="650" rx="16" fill="#ededed" stroke="#d4d4d4" stroke-dasharray="6 7"/>
+<text x="480" y="146" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#666666" text-anchor="start">your Cloudflare account, or your own server</text>
+<text x="96" y="170" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="17" font-weight="500" fill="#1e4737" text-anchor="start">ahead of time</text>
+<text x="96" y="196" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#666666" text-anchor="start">slow, and no visitor waits</text>
+<text x="96" y="540" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="17" font-weight="500" fill="#1e4737" text-anchor="start">when a visit arrives</text>
+<text x="96" y="566" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#666666" text-anchor="start">a few milliseconds</text>
+<rect x="96" y="224" width="290" height="132" rx="12" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+<text x="120" y="262" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#171717" text-anchor="start">You, in the dashboard</text>
+<text x="120" y="292" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">Add a site, confirm the</text>
+<text x="120" y="317" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">parts, read the results.</text>
+<rect x="96" y="594" width="290" height="108" rx="12" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+<text x="120" y="632" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#171717" text-anchor="start">A visitor's browser</text>
+<text x="120" y="662" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">Your page, with one tag.</text>
+<rect x="480" y="176" width="330" height="176" rx="12" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+<text x="504" y="210" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#666666" text-anchor="start">the backend · part 1</text>
+<text x="504" y="240" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#171717" text-anchor="start">Generation worker</text>
+<text x="504" y="270" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">Reads your page, writes a</text>
+<text x="504" y="295" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">version for each reason to</text>
+<text x="504" y="320" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">visit, and checks every one.</text>
+<rect x="880" y="390" width="322" height="132" rx="12" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+<text x="904" y="428" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#171717" text-anchor="start">Storage</text>
+<text x="904" y="458" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">The ready versions, and your</text>
+<text x="904" y="483" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">sites, versions and counts.</text>
+<rect x="480" y="566" width="330" height="164" rx="12" fill="#ffffff" stroke="#1e4737" stroke-width="1.6"/>
+<text x="504" y="600" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#1e4737" text-anchor="start">the backend · part 2</text>
+<text x="504" y="630" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#171717" text-anchor="start">Edge worker</text>
+<text x="504" y="660" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">Reads what the visit discloses,</text>
+<text x="504" y="685" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">picks a ready version, answers.</text>
+<text x="504" y="710" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">No model runs here.</text>
+<rect x="1300" y="176" width="204" height="176" rx="12" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+<text x="1324" y="214" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#171717" text-anchor="start">Your model</text>
+<text x="1324" y="244" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">Workers AI, or any</text>
+<text x="1324" y="269" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">OpenAI-compatible</text>
+<text x="1324" y="294" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#525252" text-anchor="start">endpoint.</text>
+<path d="M386 290 L476 290" stroke="#666666" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<text x="431" y="276" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#666666" text-anchor="middle">sets up</text>
+<path d="M810 238 L1296 238" stroke="#666666" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<text x="1053" y="224" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#666666" text-anchor="middle">your page's text</text>
+<path d="M1296 290 L810 290" stroke="#666666" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<text x="1053" y="314" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#666666" text-anchor="middle">versions</text>
+<path d="M700 352 V436 H876" stroke="#666666" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<text x="790" y="424" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#666666" text-anchor="middle">writes</text>
+<path d="M876 478 H700 V562" stroke="#666666" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<text x="790" y="502" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#666666" text-anchor="middle">reads</text>
+<path d="M386 628 L476 628" stroke="#666666" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<text x="431" y="614" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#666666" text-anchor="middle">asks once</text>
+<path d="M476 672 L386 672" stroke="#666666" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+<text x="431" y="694" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#666666" text-anchor="middle">answers</text>
+<text x="841.0" y="798" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#525252" text-anchor="middle">Nothing leaves it except your page's text, sent to the model you chose.</text>
+</svg>

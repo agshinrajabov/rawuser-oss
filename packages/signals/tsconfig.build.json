@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": "..",
+    "outDir": "dist/types"
+  },
+  "include": ["src/index.ts"]
+}

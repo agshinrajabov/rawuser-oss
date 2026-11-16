@@ -1,0 +1,208 @@
+<!doctype html>
+<!--
+  Lab page for template writing (docs/specs/template-writing.md).
+
+  Our own markup with the structure of a word-by-word hero seen on a public
+  landing page on 2026-09-27:
+  one element per word with a staggered entry animation driven by --i, two
+  inline SVG glyphs between words, a rotating word whose script keeps the
+  nodes it found at load, style groups (a dim class on words and a muted
+  wrapper), fixed lines through <br>, and a sub-paragraph with four bolds.
+  None of their code or artwork is copied.
+
+  Open it straight in a browser (no build, no server needed), or read it
+  from the snippet tests (test/template-lab.test.ts).
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lab: word-by-word hero</title>
+    <style>
+      :root {
+        --bg: #0f1113;
+        --fg: #f2f2f0;
+        --fg3: #8a8f94;
+        --accent: #7cf0c0;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font: 16px/1.5 ui-sans-serif, system-ui, sans-serif;
+      }
+      .hero {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 96px 24px 72px;
+      }
+      .h1 {
+        font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        margin: 0;
+      }
+      .h1 .w {
+        display: inline-block;
+        opacity: 0;
+        filter: blur(12px);
+        transform: translateY(16px);
+        animation: w-in 0.9s var(--ease) forwards;
+        animation-delay: calc(0.15s + var(--i) * 55ms);
+      }
+      @keyframes w-in {
+        to {
+          opacity: 1;
+          filter: blur(0);
+          transform: none;
+        }
+      }
+      .h1 .dim,
+      .h1 .muted {
+        color: var(--fg3);
+      }
+      .h1 .g {
+        display: inline-block;
+        width: 0.72em;
+        height: 0.72em;
+        vertical-align: -0.08em;
+        margin: 0 0.12em 0 0.02em;
+      }
+      .h1 .g svg {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 2.4;
+        stroke-linecap: round;
+      }
+      .h1 .g svg circle,
+      .h1 .g svg path {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: draw 1.1s var(--ease) 0.45s forwards;
+      }
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      .rot-wrap {
+        display: inline-flex;
+        align-items: baseline;
+      }
+      .rot {
+        position: relative;
+        display: inline-grid;
+        transition: width 0.55s var(--ease);
+        overflow-x: clip;
+      }
+      .rot > span {
+        grid-area: 1 / 1;
+        justify-self: start;
+        white-space: nowrap;
+        color: var(--accent);
+        opacity: 0;
+        transform: translateY(0.55em);
+        transition:
+          opacity 0.5s var(--ease),
+          transform 0.6s var(--ease);
+      }
+      .rot > span.on {
+        opacity: 1;
+        transform: none;
+      }
+      .rot > span.out {
+        opacity: 0;
+        transform: translateY(-0.55em);
+      }
+      .sub {
+        max-width: 60ch;
+        margin: 24px 0 0;
+        color: var(--fg3);
+        font-size: 1.125rem;
+      }
+      .sub b {
+        color: var(--fg);
+        font-weight: 600;
+      }
+      .cta {
+        display: inline-block;
+        margin-top: 28px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: var(--fg);
+        color: var(--bg);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .h1 .w,
+        .h1 .g svg circle,
+        .h1 .g svg path {
+          animation: none;
+          opacity: 1;
+          filter: none;
+          transform: none;
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero" id="hero">
+      <h1 class="h1" id="h1" data-rawuser="hero.headline">
+        <span class="w dim" style="--i:0">Your</span>
+        <span class="g w" style="--i:1" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" pathLength="1" /><path d="M8 12h8" pathLength="1" /></svg></span><span class="w" style="--i:2">visitors</span>
+        <span class="w dim" style="--i:3">already</span><br />
+        <span class="w dim" style="--i:4">arrive</span>
+        <span class="w dim" style="--i:5">through</span>
+        <span class="g w" style="--i:6" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" pathLength="1" /></svg></span><span class="w" style="--i:7">AI</span>
+        <span class="w" style="--i:8">tools.</span><br />
+        <span class="muted"><span class="w" style="--i:9">Choose</span>
+          <span class="w" style="--i:10">what</span>
+          <span class="w" style="--i:11">they</span>
+          <span class="w" style="--i:12">can</span>
+          <span class="w rot-wrap" style="--i:13"><span class="rot" id="rot"><span class="on">read</span><span>compare</span><span>buy</span><span>skip</span></span>.</span></span>
+      </h1>
+      <p class="sub" data-rawuser="hero.body">
+        Rawuser reads why each visitor came and lets every part of the page
+        <b>greet</b>, <b>explain</b>, <b>compare</b> or <b>close</b>. One tag in
+        the head.
+      </p>
+      <a class="cta" href="#start" data-rawuser="hero.cta.label">Start a pilot →</a>
+    </section>
+
+    <script>
+      // The page's own rotator, the way such sites write it: the four nodes
+      // are read once at load and cycled forever. A writer that replaced
+      // them would leave this loop cycling detached nodes.
+      (function rotate() {
+        var rot = document.getElementById("rot");
+        if (!rot) return;
+        var words = Array.prototype.slice.call(rot.querySelectorAll("span"));
+        var i = 0;
+        var fit = function (w) {
+          rot.style.width = w.offsetWidth + "px";
+        };
+        fit(words[0]);
+        window.__rotTicks = 0;
+        setInterval(function () {
+          var cur = words[i];
+          var next = words[(i + 1) % words.length];
+          cur.classList.remove("on");
+          cur.classList.add("out");
+          setTimeout(function () {
+            cur.classList.remove("out");
+          }, 600);
+          next.classList.add("on");
+          i = (i + 1) % words.length;
+          fit(next);
+          window.__rotTicks++;
+        }, 2200);
+      })();
+    </script>
+  </body>
+</html>

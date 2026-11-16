@@ -1,0 +1,20 @@
+{
+  "name": "@rawuser/snippet",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node --import tsx/esm build.ts",
+    "typecheck": "tsc --noEmit",
+    "dev": "node --import tsx/esm build.ts --watch"
+  },
+  "devDependencies": {
+    "@rawuser/shared": "workspace:*",
+    "@types/jsdom": "^21.1.7",
+    "esbuild": "^0.24.0",
+    "jsdom": "^25.0.1",
+    "playwright-core": "1.64.1",
+    "tsx": "^4.19.0"
+  }
+}

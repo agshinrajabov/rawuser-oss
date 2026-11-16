@@ -1,0 +1,21 @@
+{
+  "name": "@rawuser/generation",
+  "version": "0.0.0",
+  "license": "AGPL-3.0-only",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --env production",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cloudflare/puppeteer": "^1.4.0",
+    "@rawuser/shared": "workspace:*",
+    "jsonrepair": "3",
+    "node-html-parser": "^9.0.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0"
+  }
+}

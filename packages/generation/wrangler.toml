@@ -1,0 +1,126 @@
+name = "rawuser-generation"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# The offline side: it reads a customer's page, writes the versions ahead of
+# time and serves the dashboard's API. It never runs on the visitor path.
+#
+# Put your own ids where a value starts with REPLACE_. Both workers use the
+# same KV namespace and the same D1 database.
+
+[[kv_namespaces]]
+binding = "VARIANTS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rawuser_db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "../../migrations"
+
+# Reads a page that is built in the browser.
+[browser]
+binding = "BROWSER"
+
+# Workers AI: the spare route when your model endpoint does not answer, or
+# the only route when you set MODEL_ROUTE to "workers-ai".
+[ai]
+binding = "AI"
+
+# The guard on sign-in, per connecting address. The limit mirrors
+# LOGIN_LIMIT_PER_MINUTE; a test holds the two equal.
+[[ratelimits]]
+name = "LOGIN_LIMITER"
+namespace_id = "4103"
+simple = { limit = 10, period = 60 }
+
+# No schedule at the top level: only production runs the crons.
+[triggers]
+crons = []
+
+[vars]
+ENVIRONMENT = "development"
+ADMIN_TOKEN = "dev-admin"
+DASHBOARD_ORIGIN = "*"
+MFA_REQUIRED_ROLES = ""
+AUDIT_INVITES = "off"
+
+# Deploy with `wrangler deploy --env production`.
+[env.production]
+workers_dev = true
+observability = { enabled = true, head_sampling_rate = 1 }
+# Every six hours the sweeps, every hour the counts and the health check,
+# Monday the weekly lines, every five minutes the write queue.
+triggers = { crons = ["0 */6 * * *", "0 * * * *", "0 6 * * 1", "*/5 * * * *"] }
+
+# A custom domain for the dashboard's API, if you have one:
+# [[env.production.routes]]
+# pattern = "api.example.com"
+# custom_domain = true
+
+[env.production.browser]
+binding = "BROWSER"
+
+[env.production.ai]
+binding = "AI"
+
+# To send invite emails, add a sender you have verified with Cloudflare
+# Email Sending and name it in SENDER_ADDRESS below:
+# [[env.production.send_email]]
+# name = "EMAIL"
+# allowed_sender_addresses = ["invites@example.com"]
+
+[[env.production.ratelimits]]
+name = "LOGIN_LIMITER"
+namespace_id = "4104"
+simple = { limit = 10, period = 60 }
+
+[[env.production.kv_namespaces]]
+binding = "VARIANTS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "rawuser_db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "../../migrations"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+# Where your own dashboard is served. Empty: no browser may call the API.
+DASHBOARD_ORIGIN = ""
+AUDIT_INVITES = "off"
+MFA_REQUIRED_ROLES = ""
+
+# The model that writes (src/model-config.ts). Any OpenAI-compatible
+# endpoint, with its key as the secret MODEL_API_KEY
+# (`wrangler secret put MODEL_API_KEY --env production`), or Workers AI
+# alone with MODEL_ROUTE = "workers-ai" and WORKERS_AI_MODEL.
+# MODEL_BASE_URL = "https://your-model-endpoint.example.com"
+# MODEL_ID = "the-model-that-writes"
+# MODEL_FALLBACK_ID = "a-second-model-on-the-same-endpoint"
+# WORKERS_AI_MODEL = "a-workers-ai-model-id"
+
+# This install (src/install-config.ts). Unset, a feature says so or goes
+# without: no tag is handed out without EDGE_ORIGIN, no mail is sent without
+# SENDER_ADDRESS, a sentence reads whole without OPERATOR_NAME.
+# EDGE_ORIGIN = "https://edge.example.com"
+# API_ORIGIN = "https://api.example.com"
+# OWN_HOSTS = "edge.example.com,api.example.com"
+# SENDER_ADDRESS = "invites@example.com"
+# SENDER_NAME = "Your name here"
+# REPLY_TO_ADDRESS = "hello@example.com"
+# PRIVACY_ADDRESS = "privacy@example.com"
+# SUPPORT_ADDRESS = "hello@example.com"
+# OPERATOR_NAME = "Your first name"
+
+# Event rows are kept until a customer is deleted. To delete them after a
+# number of days instead, set it here: 61 or more, since the counts read
+# 60 days back. The daily totals stay.
+# RAW_EVENT_RETENTION_DAYS = "90"
+
+# Remembering returning visitors is off for a new customer until you say
+# otherwise, and never runs on a site marked sensitive unless you say so.
+# REMEMBER_DEFAULT = "on"
+# REMEMBER_ON_SENSITIVE = "on"

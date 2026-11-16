@@ -1,0 +1,26 @@
+{
+  "name": "@rawuser/shared",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/types.ts",
+    "./kv-keys": "./src/kv-keys.ts",
+    "./capture": "./src/capture.ts",
+    "./pick": "./src/pick.ts",
+    "./hide-rules": "./src/hide-rules.ts",
+    "./no-fake-visit": "./src/no-fake-visit.ts",
+    "./signals/click-id": "./src/signals/click-id.ts",
+    "./signals/source-vocabulary": "./src/signals/source-vocabulary.ts",
+    "./profiles/defaults": "./src/profiles/defaults.ts",
+    "./inline-shape": "./src/inline-shape.ts",
+    "./template": "./src/template.ts",
+    "./wrap": "./src/wrap.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

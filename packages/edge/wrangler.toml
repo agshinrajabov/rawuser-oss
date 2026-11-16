@@ -1,0 +1,79 @@
+name = "rawuser-edge"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# The visitor path: it reads a ready version and answers. No model key and
+# no model binding ever belongs in this file; writing happens in the
+# generation worker, before a visitor arrives.
+#
+# Put your own ids where a value starts with REPLACE_. Both workers use the
+# same KV namespace and the same D1 database.
+
+[[kv_namespaces]]
+binding = "VARIANTS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rawuser_db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# The guard on /event, keyed on the customer id and counted per Cloudflare
+# location. The limit mirrors EVENT_LIMIT_PER_MINUTE in src/event.ts; a test
+# holds the two equal. Bindings are not inherited: production repeats it.
+[[ratelimits]]
+name = "EVENT_LIMITER"
+namespace_id = "4101"
+simple = { limit = 600, period = 60 }
+
+[vars]
+# The top level is for `wrangler dev` only: the classifier's debug block is
+# shown when ENVIRONMENT is "development".
+ENVIRONMENT = "development"
+PREVIEW_TOKEN = "dev-preview"
+UA_TOKEN_LEARNING = "off"
+SOURCE_LEARNING = "off"
+HOLDOUT_PERCENT = "0"
+
+# Deploy with `wrangler deploy --env production`.
+[env.production]
+workers_dev = true
+
+# Our own console lines only. Invocation logs stay off: they record the
+# request, and a /select address carries the visit marker and the campaign
+# parameters.
+observability = { enabled = true, head_sampling_rate = 1, logs = { invocation_logs = false } }
+
+# A custom domain for the visitor path, if you have one:
+# [[env.production.routes]]
+# pattern = "edge.example.com"
+# custom_domain = true
+
+[[env.production.kv_namespaces]]
+binding = "VARIANTS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "rawuser_db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# Its own namespace_id, so wrangler dev and production never share a counter.
+[[env.production.ratelimits]]
+name = "EVENT_LIMITER"
+namespace_id = "4102"
+simple = { limit = 600, period = 60 }
+
+[env.production.vars]
+ENVIRONMENT = "production"
+UA_TOKEN_LEARNING = "off"
+SOURCE_LEARNING = "off"
+HOLDOUT_PERCENT = "0"
+# Set the real one with `wrangler secret put PREVIEW_TOKEN --env production`.
+PREVIEW_TOKEN = ""
+# Each of these is off until you set it:
+# PILOT_FORM_ORIGINS = "https://example.com"   a lead form on your own site may post to /pilot-request
+# APP_ORIGIN = "https://app.example.com"       your dashboard, for the link in that form's ops line
+# OWN_SITE_CUSTOMER = "my-site"                the customer id of your own site, if it reads its versions itself
+# REMEMBER_ON_SENSITIVE = "on"                 the returning-visitor memory may run on a site marked sensitive

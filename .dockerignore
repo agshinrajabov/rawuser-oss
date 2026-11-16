@@ -1,0 +1,12 @@
+.git
+**/node_modules
+**/.next
+**/out
+**/dist
+**/.wrangler
+data
+.env
+.env.*
+!packages/server/.env.example
+*.log
+.DS_Store
