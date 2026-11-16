@@ -358,8 +358,8 @@ link you open yourself.
 
 Yes. [`packages/signals`](packages/signals) tells where a visit came
 from, and [`packages/intent`](packages/intent) turns that into a reason.
-Both are MIT and have no dependency. They are not on npm yet: each README
-says how to build it from this repository.
+Both are MIT, have no dependency, and are on npm:
+`npm install @rawuser/signals` or `npm install @rawuser/intent`.
 
 </details>
 

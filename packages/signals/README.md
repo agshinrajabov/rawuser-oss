@@ -13,17 +13,9 @@ visitor.
 
 ## Install
 
-It is not on npm yet. Build it from this repository:
+    npm install @rawuser/signals
 
-    git clone https://github.com/agshinrajabov/rawuser-oss
-    cd rawuser-oss
-    pnpm install
-    pnpm --filter @rawuser/signals build
-
-The build is one file with its types and no dependency, in
-`packages/signals/dist/`. Add it to your project by its folder:
-
-    npm install /path/to/rawuser-oss/packages/signals
+One file with its types, no dependency.
 
 ## Use
 
@@ -88,6 +80,6 @@ Written in TypeScript; the types ship with the package.
 words by why a visitor came. This package is its first step, kept on
 its own because the question "where did this visit come from" is worth
 answering without the rest. To go from these signals to an intent, see
-[`@rawuser/intent`](../intent).
+[`@rawuser/intent`](https://www.npmjs.com/package/@rawuser/intent).
 
 MIT.

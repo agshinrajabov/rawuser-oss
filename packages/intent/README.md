@@ -10,17 +10,9 @@ nothing is stored, and nothing in it knows who the visitor is.
 
 ## Install
 
-It is not on npm yet. Build it from this repository:
+    npm install @rawuser/intent
 
-    git clone https://github.com/agshinrajabov/rawuser-oss
-    cd rawuser-oss
-    pnpm install
-    pnpm --filter @rawuser/intent build
-
-The build is one file with its types and no dependency, in
-`packages/intent/dist/`. Add it to your project by its folder:
-
-    npm install /path/to/rawuser-oss/packages/intent
+One file with its types, no dependency.
 
 ## Use
 
@@ -85,6 +77,6 @@ Written in TypeScript; the types ship with the package.
 
 [Rawuser](https://github.com/agshinrajabov/rawuser-oss) uses this vector
 to pick the version of a page a visitor sees. The signals alone are in
-[`@rawuser/signals`](../signals).
+[`@rawuser/signals`](https://www.npmjs.com/package/@rawuser/signals).
 
 MIT.

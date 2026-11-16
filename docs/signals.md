@@ -34,8 +34,8 @@ The tables behind the source signals (AI hosts, in-app marks, click id
 names, named platforms) are in `packages/shared/src/signals/` and are
 a package of their own, `packages/signals`. How signals become an intent
 is in `packages/shared/src/classify/`, with its own package,
-`packages/intent`. Neither is on npm yet; each README says how to build
-it from this repository.
+`packages/intent`. Both are on npm, `npm install @rawuser/signals` and
+`npm install @rawuser/intent`.
 
 What is deliberately not read: the IP address (the edge worker stores
 none and, for a page view, reads none), the connection's time zone or
