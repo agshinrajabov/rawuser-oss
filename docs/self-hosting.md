@@ -38,6 +38,12 @@ run again:
 8787, the API on 8788, the dashboard on 8789, and the four schedules. It
 applies new migrations when it starts.
 
+**How long it takes.** On a laptop with Docker, from `git clone` to a
+running install with a sign-in: 2 minutes 36 seconds (the image build is
+most of it). From adding a site to Go live: 95 seconds. From Go live until
+a page's 30 versions are written: about 3 minutes, set mostly by the model.
+Measured on 17 November 2026; the README has each step.
+
 **Choosing a model.** Any model behind an OpenAI-compatible endpoint
 that can return JSON. If yours is a reasoning model, turn its reasoning
 off: reasoning is drawn from the same budget as the answer, and the page
@@ -85,6 +91,13 @@ type with `http://` in front. Every other site is opened over `https`.
 The reads the server starts by itself (the weekly look at your site's
 menu) leave a local address alone: the check that keeps a public install
 from reading private addresses refuses it.
+
+In Docker, `localhost` inside the container is the container, not your
+machine. A site on your machine still works, because your browser opens
+it and sends the page with the setup link, and visits reach the edge on
+its published port. Only the tag check cannot reach it, so Connect says
+it could not read the site and Look says it does not see the tag yet.
+Both are about that check, not about the site; go live as usual.
 
 **No lookup outside.** Before the server reads a page of your site by
 itself, it checks that the address is a public one. On your own server it

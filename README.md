@@ -170,6 +170,22 @@ for your model, builds the dashboard for those addresses and makes your
 sign-in. With Docker: copy `packages/server/.env.example` to `.env`, fill
 it in, and `docker compose up -d`.
 
+Timed on a laptop with Docker, from `git clone` of this repository, on
+17 November 2026:
+
+| Step | Time |
+|---|---|
+| `git clone` | 14 s |
+| Build the image | 107 s (91 s with no build cache) |
+| Start, until the API and the dashboard answer | 32 s |
+| Make your sign-in | 2 s |
+| **A running install** | **2 min 36 s** |
+| Add a site, open it once, first read, Go live | 95 s |
+| From Go live until all 30 versions are written | about 3 min |
+| **From the clone to 30 written versions** | **about 7 min** |
+
+The model's speed sets the last two rows.
+
 ### On Cloudflare.
 
 Your own Cloudflare account: answered from Cloudflare's edge, and Workers
