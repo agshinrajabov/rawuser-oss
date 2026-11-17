@@ -85,3 +85,54 @@ export async function runEventRetention(
   }
   return { days, deleted, capped: false };
 }
+
+/**
+ * A shorter life for named customers' event rows (docs/specs/demo-page.md,
+ * privacy review condition 2): the public demo's rows are deleted after
+ * SHORT_RETENTION_DAYS, in the same 6-hour branch. SHORT_RETENTION_CUSTOMERS
+ * is a comma list of customer ids; unset or empty means nothing is deleted.
+ * Only those ids are ever touched. Daily rollups stay, as above.
+ */
+export const SHORT_RETENTION_DAYS = 31;
+const CUSTOMER_ID = /^[a-z0-9-]{1,50}$/;
+
+export interface ShortRetentionEnv {
+  DB: D1Database;
+  SHORT_RETENTION_CUSTOMERS?: string;
+}
+
+/** The ids whose rows live SHORT_RETENTION_DAYS; anything not id-shaped is dropped. */
+export function shortRetentionCustomers(env: { SHORT_RETENTION_CUSTOMERS?: string }): string[] {
+  return (env.SHORT_RETENTION_CUSTOMERS ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s) => CUSTOMER_ID.test(s));
+}
+
+export async function runShortRetention(
+  env: ShortRetentionEnv,
+  now: number,
+  opts: { chunk?: number; maxStatements?: number } = {},
+): Promise<{ ids: string[]; deleted: number; capped: boolean }> {
+  const ids = shortRetentionCustomers(env);
+  const chunk = opts.chunk ?? RETENTION_CHUNK;
+  let left = opts.maxStatements ?? MAX_STATEMENTS;
+  const cutoff = now - SHORT_RETENTION_DAYS * DAY_MS;
+  let deleted = 0;
+  for (const id of ids) {
+    for (;;) {
+      if (left <= 0) return { ids, deleted, capped: true };
+      left--;
+      const r = await env.DB.prepare(
+        `DELETE FROM events WHERE rowid IN (
+           SELECT rowid FROM events WHERE customer_id = ? AND ts < ? LIMIT ?)`,
+      )
+        .bind(id, cutoff, chunk)
+        .run();
+      const n = Number((r as { meta?: { changes?: number } }).meta?.changes ?? 0);
+      deleted += n;
+      if (n < chunk) break;
+    }
+  }
+  return { ids, deleted, capped: false };
+}

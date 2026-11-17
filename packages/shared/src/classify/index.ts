@@ -136,7 +136,12 @@ function unknownAppWeight(s: Signals): number {
 
 function hasCommunitySignal(s: Signals): boolean {
   // Layer G: the Reddit app's webview marker counts like a reddit.com referrer.
-  return isCommunityReferrer(s) || s.appSource?.channel === "community";
+  // A community's own tag (utm_source=hackernews) counts the same.
+  return (
+    isCommunityReferrer(s) ||
+    s.appSource?.channel === "community" ||
+    matchUtmSource(s.utm.source)?.channel === "community"
+  );
 }
 
 /** "No channel indicator" — missing medium, source, referrer, and AI source.

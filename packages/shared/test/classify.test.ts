@@ -358,3 +358,36 @@ describe("classify — offhours_context", () => {
     expect(v.context.offhours_context).toBe(1.0);
   });
 });
+
+// -----------------------------------------------------------------------
+// Hacker News tags (2026-11-17, before Show HN): a tagged HN link reads as
+// community with the name hacker-news, never as a plain campaign (direct).
+// -----------------------------------------------------------------------
+describe("classify — Hacker News tags", () => {
+  for (const tag of [
+    "news.ycombinator.com",
+    "hackernews",
+    "hacker-news",
+    "hacker_news",
+    "hn",
+    "HN",
+  ]) {
+    it(`utm_source=${tag} is community`, async () => {
+      const { selectVariantKey } = await import("../src/select/index.ts");
+      const { sourceNameFor } = await import("../src/signals/source-vocabulary.ts");
+      const signals = makeSignals({
+        url: `https://rawuser.test/?utm_source=${encodeURIComponent(tag)}`,
+        headers: {},
+      });
+      const sel = selectVariantKey(classify(signals, FIXED_TS));
+      expect(sel.source_dim).toBe("community");
+      expect(sourceNameFor(signals, "community")).toBe("hacker-news");
+    });
+  }
+
+  it("a value that only contains hn is not Hacker News", async () => {
+    const { matchUtmSource } = await import("../src/signals/source-vocabulary.ts");
+    expect(matchUtmSource("hnews-digest")).toBeNull();
+    expect(matchUtmSource("john")).toBeNull();
+  });
+});

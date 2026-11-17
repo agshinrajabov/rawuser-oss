@@ -30,7 +30,7 @@ import { sweepAuth } from "./auth/mfa-store.ts";
 import { SESSION_ABSOLUTE_MS, SESSION_IDLE_MS } from "./auth/session.ts";
 import { runAggregator } from "./cron/analytics-aggregator.ts";
 import { runChoiceSweep, runLearnedSweep, runMarketSweep } from "./cron/direct-answers.ts";
-import { runEventRetention } from "./cron/event-retention.ts";
+import { runEventRetention, runShortRetention } from "./cron/event-retention.ts";
 import { runExposureRollup } from "./cron/exposure-rollup.ts";
 import { runLateTagWeekly } from "./cron/late-tag-weekly.ts";
 import { runOpsHeartbeat } from "./cron/ops-heartbeat.ts";
@@ -58,6 +58,7 @@ interface Env extends GenerateEnv, InstallEnv {
   ALERT_WEBHOOK_URL?: string;
   /** Raw event retention in days; unset means off (security-hardening.md §2.5). */
   RAW_EVENT_RETENTION_DAYS?: string;
+  SHORT_RETENTION_CUSTOMERS?: string;
 }
 
 export default {
@@ -192,6 +193,18 @@ export default {
         }
       } catch {
         console.error("[generation/6h] event retention failed");
+      }
+
+      // The public demo's rows live 31 days (docs/specs/demo-page.md).
+      try {
+        const short = await runShortRetention(env, now);
+        if (short.deleted > 0 || short.capped) {
+          console.log(
+            `[generation/6h] short retention: deleted=${short.deleted} capped=${short.capped}`,
+          );
+        }
+      } catch {
+        console.error("[generation/6h] short retention failed");
       }
 
       // Snippet issue rows are kept with the other event rows (ADR 0037):

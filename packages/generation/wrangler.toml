@@ -119,6 +119,9 @@ MFA_REQUIRED_ROLES = ""
 # number of days instead, set it here: 61 or more, since the counts read
 # 60 days back. The daily totals stay.
 # RAW_EVENT_RETENTION_DAYS = "90"
+# A comma list of customer ids whose event rows are deleted after 31 days,
+# for a public demo page. Only these ids are touched.
+# SHORT_RETENTION_CUSTOMERS = "demo"
 
 # Remembering returning visitors is off for a new customer until you say
 # otherwise, and never runs on a site marked sensitive unless you say so.

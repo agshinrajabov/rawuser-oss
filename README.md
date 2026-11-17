@@ -41,6 +41,11 @@ the design and the buttons stay exactly as you built them.
 
 ## See it run.
 
+**Try it in your browser, no sign-up:** [userawuser.com/demo](https://userawuser.com/demo/).
+Pick who is visiting (a ChatGPT answer, a pricing ad, a LinkedIn post, your
+own newsletter) and the same made-up page reloads with the words written for
+that visit, from our hosted service.
+
 This is one real run of this repository: started on a laptop with
 `pnpm server:start`, pointed at a made-up site called Tallybook, with one
 model key. Nothing here is drawn.

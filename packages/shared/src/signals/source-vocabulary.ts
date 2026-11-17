@@ -384,6 +384,20 @@ export const SOCIAL_UTM_SOURCES: Readonly<Record<string, string>> = {
 };
 
 /**
+ * utm_source values for a community, exact only (2026-11-17, before Show
+ * HN): Hacker News links carry no tags, but people who post there tag
+ * their own links with these. A pattern would catch too much (`hn` inside
+ * other words), so only the whole value counts.
+ */
+export const COMMUNITY_UTM_SOURCES: Readonly<Record<string, SourceName>> = {
+  "news.ycombinator.com": "hacker-news",
+  hackernews: "hacker-news",
+  "hacker-news": "hacker-news",
+  hacker_news: "hacker-news",
+  hn: "hacker-news",
+};
+
+/**
  * utm_source values that are social with no name. `an` is Meta's Audience
  * Network (`{{site_source_name}}`, ads-platforms.md §2): Meta's ads inside
  * other publishers' apps. The visitor was in some other app, not on
@@ -614,6 +628,8 @@ export function matchUtmSource(value: string | null | undefined): SourceMatch | 
   const social = SOCIAL_UTM_SOURCES[v];
   if (social) return { channel: "social", source: social, by: "exact" };
   if (UNNAMED_SOCIAL_UTM_SOURCES.has(v)) return { channel: "social", source: null, by: "exact" };
+  const community = COMMUNITY_UTM_SOURCES[v];
+  if (community) return { channel: "community", source: community, by: "exact" };
   if (PAID_SOURCE_RE.test(v)) return { channel: "paid", source: null, by: "pattern" };
   for (const [re, source] of AI_SOURCE_PATTERNS)
     if (re.test(v)) return { channel: "ai", source, by: "pattern" };
@@ -755,6 +771,7 @@ export function sourceNameFor(s: Signals, sourceDim: string): SourceName | null 
       );
     case "community":
       return pick(
+        utm?.channel === "community" ? utm.source : null,
         ref?.channel === "community" ? ref.source : null,
         app?.channel === "community" ? app.app : null,
       );
