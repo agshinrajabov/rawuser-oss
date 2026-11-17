@@ -33,9 +33,9 @@ your edge worker. The worker reads the rest from the request itself.
 The tables behind the source signals (AI hosts, in-app marks, click id
 names, named platforms) are in `packages/shared/src/signals/` and are
 a package of their own, `packages/signals`. How signals become an intent
-is in `packages/shared/src/classify/`, with its own package,
-`packages/intent`. Both are on npm, `npm install @rawuser/signals` and
-`npm install @rawuser/intent`.
+is in `packages/shared/src/classify/`, the same package's second entry
+point, `@rawuser/signals/intent`. It is on npm: `npm install
+@rawuser/signals`.
 
 What is deliberately not read: the IP address (the edge worker stores
 none and, for a page view, reads none), the connection's time zone or

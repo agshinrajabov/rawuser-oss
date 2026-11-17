@@ -1,6 +1,6 @@
 /**
- * Builds the package: one ESM file with no dependency, and the type
- * declarations beside it. The source lives in packages/shared; nothing is
+ * Builds the package: two ESM entry files and the chunk they share, no
+ * dependency, and the type declarations beside them. The source lives in packages/shared; nothing is
  * copied by hand.
  */
 
@@ -12,13 +12,22 @@ import * as esbuild from "esbuild";
 
 const pkgDir = fileURLToPath(new URL(".", import.meta.url));
 
-export async function buildPackage(): Promise<{ file: string; bytes: number }> {
+export async function buildPackage(): Promise<{
+  file: string;
+  intent: string;
+  files: string[];
+  bytes: number;
+}> {
   rmSync(join(pkgDir, "dist"), { recursive: true, force: true });
-  const file = join(pkgDir, "dist/index.js");
+  const outdir = join(pkgDir, "dist");
+  // Two doors, one copy of the code: the part both use goes in a shared
+  // chunk, so importing both does not load the signals twice.
   const result = await esbuild.build({
-    entryPoints: [join(pkgDir, "src/index.ts")],
-    outfile: file,
+    entryPoints: { index: join(pkgDir, "src/index.ts"), intent: join(pkgDir, "src/intent.ts") },
+    outdir,
     bundle: true,
+    splitting: true,
+    chunkNames: "chunk-[hash]",
     format: "esm",
     platform: "neutral",
     target: "es2020",
@@ -26,11 +35,16 @@ export async function buildPackage(): Promise<{ file: string; bytes: number }> {
     legalComments: "none",
   });
   execFileSync("npx", ["tsc", "-p", "tsconfig.build.json"], { cwd: pkgDir, stdio: "inherit" });
-  const bytes = Object.values(result.metafile.outputs)[0]?.bytes ?? 0;
-  return { file, bytes };
+  const outputs = Object.entries(result.metafile.outputs);
+  return {
+    file: join(outdir, "index.js"),
+    intent: join(outdir, "intent.js"),
+    files: outputs.map(([f]) => f),
+    bytes: outputs.reduce((n, [, o]) => n + o.bytes, 0),
+  };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { bytes } = await buildPackage();
-  console.log(`dist/index.js ${bytes} bytes`);
+  console.log(`dist ${bytes} bytes`);
 }

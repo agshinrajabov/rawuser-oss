@@ -1,8 +1,8 @@
 /**
- * @rawuser/intent: from a visit's signals to why the visitor came.
+ * @rawuser/signals/intent: from a visit's signals to why the visitor came.
  *
  * The source is in ../../shared/src (classify, vector, select); this file is
- * the package's door. `classify` turns signals into a vector over six
+ * the package's second door. `classify` turns signals into a vector over six
  * intents, six sources and six contexts; `selectVariantKey` names the
  * strongest intent and source. Pure functions: no storage, no network, and
  * nothing here knows who the visitor is.

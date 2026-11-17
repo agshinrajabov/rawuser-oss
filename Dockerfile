@@ -10,7 +10,6 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages/shared/package.json packages/shared/
 COPY packages/snippet/package.json packages/snippet/
 COPY packages/signals/package.json packages/signals/
-COPY packages/intent/package.json packages/intent/
 COPY packages/edge/package.json packages/edge/
 COPY packages/generation/package.json packages/generation/
 COPY packages/dashboard/package.json packages/dashboard/

@@ -50,7 +50,7 @@ removed or renamed, the test that reads this table fails.
 | 3 | `packages/generation/test/direct-markets.test.ts` | "counts only the customer's own visits, by country, never across customers" |
 | 4 | `packages/shared/test/special-category-terms.test.ts` | "special-category screen: every category in every language" |
 | 4 | `packages/shared/test/ads-platforms.test.ts` | "a campaign name the special-category screen refuses chooses nothing" |
-| 4 | `packages/intent/test/package.test.ts` | "a campaign name that points at a special category chooses nothing" |
+| 4 | `packages/signals/test/intent.test.ts` | "a campaign name that points at a special category chooses nothing" |
 | 5 | `packages/edge/test/bundle.test.ts` | "contains no model call and nothing of the model layer" |
 | 5 | `packages/generation/test/cron/visitors.test.ts` | "no alert and no model call is in a file that names the country" |
 | 5 | `packages/generation/test/install-unset.test.ts` | "no sender, reply address, privacy address, support address or operator" |

@@ -18,10 +18,13 @@ const UA =
 type Lib = typeof import("../src/index.ts");
 let lib: Lib;
 let js = "";
+/** Every file the build wrote, entry files and chunk. */
+let all = "";
 
 beforeAll(async () => {
   const built = await buildPackage();
   js = readFileSync(built.file, "utf8");
+  all = built.files.map((f) => readFileSync(resolve(PKG, "..", "..", f), "utf8")).join("\n");
   lib = (await import(/* @vite-ignore */ `${built.file}?t=${Date.now()}`)) as Lib;
 }, 120_000);
 
@@ -36,14 +39,15 @@ const read = (address: string, headers: Record<string, string> = {}) => {
 };
 
 describe("@rawuser/signals, built", () => {
-  it("is one file that imports nothing", () => {
-    expect(js).not.toMatch(/^\s*import\s/m);
+  it("imports nothing but its own shared chunk", () => {
+    for (const m of js.matchAll(/^\s*import\b[^;]*?from\s*"([^"]+)"/gm))
+      expect(m[1]).toMatch(/^\.\/chunk-[A-Z0-9]+\.js$/);
     expect(js).not.toMatch(/\brequire\(/);
     expect(js).not.toContain("@rawuser/shared");
   });
 
   it("stores nothing and calls nothing", () => {
-    expect(js).not.toMatch(
+    expect(all).not.toMatch(
       /\bfetch\(|XMLHttpRequest|sendBeacon|document\.cookie|localStorage|sessionStorage|indexedDB/,
     );
   });
@@ -81,7 +85,9 @@ describe("@rawuser/signals, built", () => {
   });
 
   it("exports every name the README names", () => {
-    const named = [...README.matchAll(/`([A-Za-z_]+)`/g)]
+    // The intent door's names are checked in intent.test.ts.
+    const where = README.slice(0, README.indexOf("## Why it came"));
+    const named = [...where.matchAll(/`([A-Za-z_]+)`/g)]
       .map((m) => m[1] as string)
       .filter((n) => /^[a-z]+[A-Z]|^[A-Z_]+$/.test(n) && n !== "URL");
     expect(named.length).toBeGreaterThan(8);
@@ -115,6 +121,7 @@ describe("@rawuser/signals, as a package", () => {
     expect(manifest.private).toBeUndefined();
     expect(manifest.dependencies).toBeUndefined();
     expect(manifest.files).toEqual(["dist", "README.md", "LICENSE"]);
+    expect(Object.keys(manifest.exports)).toEqual([".", "./intent"]);
     const licence = readFileSync(join(PKG, "LICENSE"), "utf8");
     expect(licence.startsWith("MIT License\n\nCopyright (c) 2026 PixelHurts, LLC\n")).toBe(true);
   });

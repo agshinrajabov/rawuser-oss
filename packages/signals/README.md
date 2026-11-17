@@ -1,6 +1,6 @@
 # @rawuser/signals
 
-Where a visit came from, read from one request.
+Where a visit came from, and why it came, read from one request.
 
 A click from ChatGPT's app, from Instagram's in-app browser or from a
 message often arrives with no referrer, and analytics files it as direct.
@@ -15,7 +15,9 @@ visitor.
 
     npm install @rawuser/signals
 
-One file with its types, no dependency.
+Two entry points with their types, no dependency:
+`@rawuser/signals` for where a visit came from, `@rawuser/signals/intent`
+for why. They share one copy of the code.
 
 ## Use
 
@@ -70,6 +72,67 @@ The tables are exported (`AI_REFERRER_HOSTS`, `APP_UAS`,
 - The country is the code you pass in (`cf.country` on Cloudflare). It is
   never worked out from an address.
 
+## Why it came
+
+`@rawuser/signals/intent` goes one step further. Give it what one request
+says (a tagged link, a referrer, the page opened) and it answers with a
+vector over six intents, six sources and six contexts, and with the
+strongest intent and source as a pair. It is a set of rules and weights
+you can read in the source. No model is called.
+
+```js
+import { classify, extractSignals, hasMeaningfulSignal, selectVariantKey } from "@rawuser/signals/intent";
+
+export default {
+  async fetch(request) {
+    const url = new URL(request.url);
+    const signals = extractSignals({
+      url,
+      headers: request.headers,
+      selfHost: url.hostname,
+      entryPath: url.pathname,
+    });
+    // Nothing to go on: show the page as it is.
+    if (!hasMeaningfulSignal(signals)) return Response.json({ reason: null });
+
+    const vector = classify(signals, Date.now());
+    return Response.json({ reason: selectVariantKey(vector) });
+  },
+};
+```
+
+What comes back, for four visits:
+
+| The visit | `selectVariantKey` |
+|---|---|
+| `/?utm_source=chatgpt.com` | `problem`, `ai` |
+| `/pricing?gclid=...` | `pricing`, `paid` |
+| a referrer of `https://www.google.com/` | `problem`, `organic` |
+| `/pricing`, nothing else | `pricing`, `direct` |
+
+A visit to `/` with no tag, no referrer and no app marker has no
+meaningful signal: `hasMeaningfulSignal` is false, and the honest thing to
+do is to change nothing.
+
+### The vector
+
+- Intents: `competitor`, `evaluation`, `feature`, `problem`, `brand`,
+  `pricing`.
+- Sources: `ai`, `social`, `community`, `paid`, `organic`, `direct`.
+- Contexts: `price_sensitivity`, `technical_depth`, `urgency`,
+  `trust_need`, `mobile_context`, `offhours_context`.
+
+Several can be high at once, and a source never overrides an intent.
+`classify(signals, nowMs, timezone)` is a pure function: the same input
+and the same time give the same vector. The time only feeds
+`offhours_context`.
+
+### What it will not do
+
+It reads why a visit happened, never who made it. There is no visitor id
+in or out, and a campaign name that points at a special category (health,
+religion, politics and the like) chooses nothing.
+
 ## Types
 
 Written in TypeScript; the types ship with the package.
@@ -77,9 +140,8 @@ Written in TypeScript; the types ship with the package.
 ## Part of Rawuser
 
 [Rawuser](https://github.com/agshinrajabov/rawuser-oss) changes a page's
-words by why a visitor came. This package is its first step, kept on
-its own because the question "where did this visit come from" is worth
-answering without the rest. To go from these signals to an intent, see
-[`@rawuser/intent`](https://www.npmjs.com/package/@rawuser/intent).
+words by why a visitor came: these two steps, then a version of the page
+written ahead of time for that reason. Until 0.2.0 the second step was its
+own package, `@rawuser/intent`; it now lives here.
 
 MIT.

@@ -1,7 +1,7 @@
 {
   "name": "@rawuser/signals",
-  "version": "0.1.0",
-  "description": "Where a visit came from: AI assistants, in-app browsers, ad click ids, tagged links and referrers, read from one request. No cookie, no identifier.",
+  "version": "0.2.0",
+  "description": "Where a visit came from (AI assistants, in-app browsers, ad click ids, tagged links, referrers) and why it came, read from one request. No cookie, no identifier.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
@@ -9,6 +9,10 @@
     ".": {
       "types": "./dist/types/signals/src/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./intent": {
+      "types": "./dist/types/signals/src/intent.d.ts",
+      "import": "./dist/intent.js"
     }
   },
   "types": "./dist/types/signals/src/index.d.ts",
@@ -22,7 +26,10 @@
     "in-app browser",
     "click id",
     "attribution",
-    "privacy"
+    "privacy",
+    "intent",
+    "classifier",
+    "personalization"
   ],
   "repository": {
     "type": "git",

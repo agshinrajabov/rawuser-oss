@@ -50,6 +50,10 @@ account signs nothing with us and chooses its own model provider.
    `@rawuser/signals` (where a visit came from) and `@rawuser/intent`
    (signals to an intent). A developer who only wants to know "did this
    visit come from an AI assistant" installs one and meets the project.
+   Amended 2026-11-17: one package, `@rawuser/signals` 0.2.0, with the
+   intent as its second entry point (`@rawuser/signals/intent`); the
+   two shared most of their code, and one name is one thing to explain.
+   `@rawuser/intent` 0.1.0 is deprecated and points there.
 
 5. **Self-hosting means wherever you want to run it** (amended
    2026-11-16). Two ways, one code: your own Cloudflare account, where

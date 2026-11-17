@@ -366,9 +366,9 @@ link you open yourself.
 <br>
 
 Yes. [`packages/signals`](packages/signals) tells where a visit came
-from, and [`packages/intent`](packages/intent) turns that into a reason.
-Both are MIT, have no dependency, and are on npm:
-`npm install @rawuser/signals` or `npm install @rawuser/intent`.
+from and, through its second entry point `@rawuser/signals/intent`,
+turns that into a reason. MIT, no dependency, on npm:
+`npm install @rawuser/signals`.
 
 </details>
 
@@ -378,8 +378,7 @@ Both are MIT, have no dependency, and are on npm:
 |---|---|---|
 | `packages/snippet` | The tag that runs on a site | MIT |
 | `packages/shared` | Signal tables, the classifier, shared types | MIT |
-| `packages/signals` | Where a visit came from, as its own package | MIT |
-| `packages/intent` | From signals to a reason, as its own package | MIT |
+| `packages/signals` | Where a visit came from and why, as its own package | MIT |
 | `packages/edge` | The worker that answers visits | AGPL-3.0 |
 | `packages/generation` | The worker that writes versions and serves the dashboard | AGPL-3.0 |
 | `packages/dashboard` | The dashboard | AGPL-3.0 |

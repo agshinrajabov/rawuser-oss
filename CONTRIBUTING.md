@@ -63,8 +63,8 @@ We can only take a change from someone who has agreed to
 
 ## Licences
 
-What you add to `packages/shared`, `packages/snippet`, `packages/signals`
-or `packages/intent` is MIT. Everything else is AGPL, version 3 only.
+What you add to `packages/shared`, `packages/snippet` or
+`packages/signals` is MIT. Everything else is AGPL, version 3 only.
 See [NOTICE.md](NOTICE.md).
 
 ## Security

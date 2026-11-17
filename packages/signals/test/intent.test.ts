@@ -1,6 +1,7 @@
 /**
- * The package as someone installs it: built, self-contained, typed, and
- * doing what its README says.
+ * The intent door, `@rawuser/signals/intent` (merged from @rawuser/intent
+ * 0.1.0 on 2026-11-17): built, typed, and doing what the README's
+ * "Why it came" section says.
  */
 import { execFileSync } from "node:child_process";
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -17,14 +18,14 @@ const UA =
 /** A fixed weekday noon, UTC: the time only feeds one context. */
 const NOON = Date.UTC(2026, 0, 5, 12);
 
-type Lib = typeof import("../src/index.ts");
+type Lib = typeof import("../src/intent.ts");
 let lib: Lib;
 let js = "";
 
 beforeAll(async () => {
   const built = await buildPackage();
-  js = readFileSync(built.file, "utf8");
-  lib = (await import(/* @vite-ignore */ `${built.file}?t=${Date.now()}`)) as Lib;
+  js = readFileSync(built.intent, "utf8");
+  lib = (await import(/* @vite-ignore */ `${built.intent}?t=${Date.now()}`)) as Lib;
 }, 120_000);
 
 const read = (address: string, headers: Record<string, string> = {}) => {
@@ -43,9 +44,10 @@ const pair = (address: string, headers: Record<string, string> = {}) => {
   return `\`${intent_dim}\`, \`${source_dim}\``;
 };
 
-describe("@rawuser/intent, built", () => {
-  it("is one file that imports nothing", () => {
-    expect(js).not.toMatch(/^\s*import\s/m);
+describe("@rawuser/signals/intent, built", () => {
+  it("imports nothing but its own shared chunk", () => {
+    for (const m of js.matchAll(/^\s*import\b[^;]*?from\s*"([^"]+)"/gm))
+      expect(m[1]).toMatch(/^\.\/chunk-[A-Z0-9]+\.js$/);
     expect(js).not.toMatch(/\brequire\(/);
     expect(js).not.toContain("@rawuser/shared");
   });
@@ -105,22 +107,12 @@ describe("@rawuser/intent, built", () => {
   });
 });
 
-describe("@rawuser/intent, as a package", () => {
-  it("is MIT, public, and ships only its build, its README and its licence", () => {
-    expect(manifest.name).toBe("@rawuser/intent");
-    expect(manifest.license).toBe("MIT");
-    expect(manifest.private).toBeUndefined();
-    expect(manifest.dependencies).toBeUndefined();
-    expect(manifest.files).toEqual(["dist", "README.md", "LICENSE"]);
-    const licence = readFileSync(join(PKG, "LICENSE"), "utf8");
-    expect(licence.startsWith("MIT License\n\nCopyright (c) 2026 PixelHurts, LLC\n")).toBe(true);
-  });
-
+describe("@rawuser/signals/intent, as a package", () => {
   describe("in a project that installs it", () => {
     let dir = "";
     beforeAll(() => {
-      dir = mkdtempSync(join(tmpdir(), "intent-consumer-"));
-      const at = join(dir, "node_modules/@rawuser/intent");
+      dir = mkdtempSync(join(tmpdir(), "intent-door-consumer-"));
+      const at = join(dir, "node_modules/@rawuser/signals");
       mkdirSync(at, { recursive: true });
       cpSync(join(PKG, "dist"), join(at, "dist"), { recursive: true });
       cpSync(join(PKG, "package.json"), join(at, "package.json"));
@@ -128,7 +120,7 @@ describe("@rawuser/intent, as a package", () => {
       writeFileSync(
         join(dir, "use.ts"),
         [
-          'import { type IntentVector, classify, extractSignals, selectVariantKey } from "@rawuser/intent";',
+          'import { type IntentVector, classify, extractSignals, selectVariantKey } from "@rawuser/signals/intent";',
           'const s = extractSignals({ url: new URL("https://example.com/"), headers: new Headers() });',
           "const v: IntentVector = classify(s, 0);",
           'const dim: "competitor" | "evaluation" | "feature" | "problem" | "brand" | "pricing" = selectVariantKey(v).intent_dim;',

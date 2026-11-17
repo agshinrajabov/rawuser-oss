@@ -4,7 +4,7 @@ Copyright (c) 2026 PixelHurts, LLC, doing business as Rawuser.
 
 | Where | Licence |
 |---|---|
-| `packages/shared`, `packages/snippet`, `packages/signals`, `packages/intent` | MIT |
+| `packages/shared`, `packages/snippet`, `packages/signals` | MIT |
 | Everything else: `packages/edge`, `packages/generation`, `packages/dashboard`, `packages/server`, `migrations`, `scripts` | GNU Affero General Public License, version 3 only |
 
 Each package holds its own `LICENSE`. The file `LICENSE` beside this one is
