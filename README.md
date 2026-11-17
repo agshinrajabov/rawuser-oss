@@ -41,6 +41,10 @@ the design and the buttons stay exactly as you built them.
 
 ## See it run.
 
+<p align="center">
+  <img src="docs/assets/film.gif" alt="A 22-second film: one headline on a fixed column. A LinkedIn link drops the word your; a ChatGPT link resets it to Late invoices are a cash problem; a pricing ad to One flat price for every studio; Googlebot with the same ChatGPT link gets the page as built. Then the three commands to run it yourself." width="100%">
+</p>
+
 **Try it in your browser, no sign-up:** [userawuser.com/demo](https://userawuser.com/demo/).
 Pick who is visiting (a ChatGPT answer, a pricing ad, a LinkedIn post, your
 own newsletter) and the same made-up page reloads with the words written for
