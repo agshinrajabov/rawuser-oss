@@ -79,3 +79,4 @@ export * from "./inline-shape.ts";
 export * from "./template.ts";
 
 export { isLocalHost, siteOrigin } from "./site-address.ts";
+export * from "./email-address.ts";

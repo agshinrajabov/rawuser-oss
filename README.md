@@ -225,6 +225,11 @@ the law asks of whoever runs an install.
 
 </details>
 
+**Running it?** Tell us in
+[Show and tell](https://github.com/agshinrajabov/rawuser-oss/discussions/categories/show-and-tell)
+if you like. Nothing in the code tells us: a self-hosted install sends us
+nothing.
+
 ## Put it on your site.
 
 Once your dashboard is up:

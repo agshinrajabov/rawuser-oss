@@ -8,7 +8,10 @@ There are two ways to run Rawuser yourself, and they run the same code:
   account, answered from Cloudflare's edge.
 
 Either way nothing is sent to us. Your install talks to your own host,
-your own site and the model you chose.
+your own site and the model you chose. If you would like us to know you run
+it, say so in
+[Show and tell](https://github.com/agshinrajabov/rawuser-oss/discussions/categories/show-and-tell);
+that is the only way we find out.
 
 For both you need Node 22, pnpm 9 and a model that writes the versions:
 any OpenAI-compatible endpoint with its key. On Cloudflare, Workers AI in

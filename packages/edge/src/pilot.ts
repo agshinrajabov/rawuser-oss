@@ -33,10 +33,12 @@
  * no write), per-client 5/h and global 60/h KV caps protecting D1 quota.
  */
 
+import { type PilotReplyEnv, sendPilotReply } from "./pilot-reply.ts";
+
 const MAX_PER_CLIENT_PER_HOUR = 5;
 const MAX_GLOBAL_PER_HOUR = 60;
 
-export interface PilotEnv {
+export interface PilotEnv extends PilotReplyEnv {
   DB: D1Database;
   VARIANTS: KVNamespace;
   /**
@@ -357,19 +359,13 @@ export async function handlePilotRequest(
   }
 
   const createdAt = Date.now();
+  const requestId = `plt_${crypto.randomUUID().replace(/-/g, "")}`;
   try {
     await env.DB.prepare(
       `INSERT INTO pilot_requests (id, email, site_url, note, created_at, status, status_at)
        VALUES (?, ?, ?, ?, ?, 'new', ?)`,
     )
-      .bind(
-        `plt_${crypto.randomUUID().replace(/-/g, "")}`,
-        validated.email,
-        validated.site_url,
-        validated.note,
-        createdAt,
-        createdAt,
-      )
+      .bind(requestId, validated.email, validated.site_url, validated.note, createdAt, createdAt)
       .run();
   } catch {
     console.error("[rawuser/edge] pilot request write failed");
@@ -377,5 +373,13 @@ export async function handlePilotRequest(
   }
 
   ctx.waitUntil(notifyNewLead(env));
+  // The confirmation (docs/specs/pilot-auto-reply.md): after the answer, one
+  // closed word in the log when it does not go out, never the address.
+  ctx.waitUntil(
+    sendPilotReply(env, validated.email, requestId, new Date(createdAt)).then((outcome) => {
+      if (outcome !== "sent" && outcome !== "off")
+        console.log(`[rawuser/edge] pilot reply: ${outcome}`);
+    }),
+  );
   return respond(201, { ok: true });
 }

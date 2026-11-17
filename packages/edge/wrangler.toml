@@ -75,5 +75,11 @@ PREVIEW_TOKEN = ""
 # Each of these is off until you set it:
 # PILOT_FORM_ORIGINS = "https://example.com"   a lead form on your own site may post to /pilot-request
 # APP_ORIGIN = "https://app.example.com"       your dashboard, for the link in that form's ops line
+# PILOT_AUTO_REPLY = "on"                      one confirmation email to whoever sends that form; needs a
+#                                              [[env.production.send_email]] binding named EMAIL and:
+# PILOT_REPLY_FROM = "hello@example.com"       the one address it is sent from
+# PILOT_REPLY_NAME = "My company"              the name it is sent under
+# PILOT_REPLY_TO = "team@example.com"          where a reply goes (unset: the sender)
+# PILOT_REPLY_SIGNATURE = "Sam|My company"     the sign-off, lines split by |
 # OWN_SITE_CUSTOMER = "my-site"                the customer id of your own site, if it reads its versions itself
 # REMEMBER_ON_SENSITIVE = "on"                 the returning-visitor memory may run on a site marked sensitive

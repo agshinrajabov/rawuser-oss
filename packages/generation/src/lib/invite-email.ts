@@ -15,6 +15,7 @@
  * once, as itself.
  */
 
+import { normalizeEmail } from "@rawuser/shared";
 import { type InstallEnv, mailSender, privacyAddress, replyToAddress } from "../install-config.ts";
 
 /** The name the message speaks under when the install gives its sender none. */
@@ -69,20 +70,8 @@ export interface InviteEmailEnv
 
 export type SendResult = { emailed: true } | { emailed: false; email_error: EmailError };
 
-const MAX_ADDRESS = 254;
-const ADDRESS_RE = /^[^\s@<>,;:"()[\]\\]+@[^\s@<>,;:"()[\]\\]+\.[^\s@<>,;:"()[\]\\]{2,}$/;
-
-/**
- * A single plain address, or null. Refuses lists, display names, quotes and
- * line breaks, so nothing typed can add a recipient or a header.
- */
-export function normalizeEmail(value: unknown): string | null {
-  if (typeof value !== "string") return null;
-  const v = value.trim();
-  if (v.length === 0 || v.length > MAX_ADDRESS) return null;
-  if (!ADDRESS_RE.test(v)) return null;
-  return v;
-}
+/** One plain address, or null (moved to shared for the pilot form's confirmation). */
+export { normalizeEmail };
 
 const MONTHS = [
   "January",
