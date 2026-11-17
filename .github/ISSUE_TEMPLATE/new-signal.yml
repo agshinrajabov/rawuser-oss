@@ -1,0 +1,47 @@
+name: A new signal
+description: Read something new about a visit (a parameter, a header, an app marker).
+labels: [new signal, privacy review]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A signal is anything read about a visit. Each one needs a lawful
+        basis and a sentence a site owner can put in a privacy notice, so
+        please answer the questions below before writing code.
+  - type: textarea
+    id: what
+    attributes:
+      label: What it reads
+      description: The exact parameter, header or marker, and an example value.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What it says about the visit
+      description: Which source, intent or context it would feed, and how often you see it.
+    validations:
+      required: true
+  - type: textarea
+    id: keep
+    attributes:
+      label: What is kept
+      description: Is anything stored or sent beyond reading it once? If yes, what, where and for how long.
+    validations:
+      required: true
+  - type: textarea
+    id: basis
+    attributes:
+      label: Lawful basis and the notice sentence
+      description: Why reading it is lawful under GDPR and ePrivacy, and one sentence a site owner could publish about it.
+    validations:
+      required: true
+  - type: checkboxes
+    id: lines
+    attributes:
+      label: The lines
+      options:
+        - label: It is not a device or browser attribute combined to recognise someone (fingerprinting).
+          required: true
+        - label: It says nothing about health, religion, politics, sexuality, ethnicity or union membership.
+          required: true

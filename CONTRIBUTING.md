@@ -51,8 +51,9 @@ the code.
 
 This repository is published from our working repository at each release.
 We apply an accepted change there, and it appears here with the next
-release, with your name on it. Your pull request is closed at that point,
-not merged; that is how it is meant to look.
+release, with your name on it: the release commit lists you as a
+co-author. Your pull request is closed at that point, with a link to that
+commit, not merged; that is how it is meant to look.
 
 ## The contributor agreement
 

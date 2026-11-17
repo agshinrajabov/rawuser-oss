@@ -1,0 +1,40 @@
+name: Something is broken
+description: The tag, the workers, the dashboard or an install does not do what the docs say.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to see it
+      description: The smallest steps that show it. A page address or a test is best.
+    validations:
+      required: true
+  - type: dropdown
+    id: route
+    attributes:
+      label: Where it runs
+      options:
+        - On a server (pnpm server:start)
+        - In Docker
+        - On Cloudflare (pnpm self-host)
+        - On a site, with the hosted service
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Commit
+      description: "`git rev-parse --short HEAD`"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output
+      description: Error text or logs. Remove keys, addresses and anything about your visitors first.
+      render: text

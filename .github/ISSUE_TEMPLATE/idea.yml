@@ -1,0 +1,26 @@
+name: An idea
+description: Something Rawuser could do, or do better.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you are trying to do and what is in the way.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What you have in mind
+    validations:
+      required: true
+  - type: checkboxes
+    id: lines
+    attributes:
+      label: The lines in CONTRIBUTING.md
+      options:
+        - label: It needs no model call, database write or extra network round trip while a visitor waits.
+          required: true
+        - label: It does not recognise, follow or profile a visitor.
+          required: true
